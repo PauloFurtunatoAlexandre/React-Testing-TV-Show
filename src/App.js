@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import Dropdown from "react-dropdown";
 import parse from "html-react-parser";
 
@@ -19,6 +18,7 @@ export default function App() {
 
   useEffect(() => {
     fetchShow().then((res) => {
+      console.log("setShow", res)
         setShow(res.data);
         setSeasons(formatSeasons(res.data._embedded.episodes));
       });
@@ -42,6 +42,7 @@ export default function App() {
         onChange={handleSelect}
         value={selectedSeason || "Select a season"}
         placeholder="Select an option"
+        data-testid="season"
       />
       <Episodes episodes={episodes} />
     </div>
